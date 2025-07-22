@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Post Maker Bot</title>
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="flex-between mb-1">
+        <h1>Отправка постов</h1>
+        <button class="btn" onclick="location.href='/create'">Создать пост</button>
+      </div>
+      <form action="/send" method="post">
+        <div class="form-group">
+          <label>Проект</label>
+          <select name="project">
+            <% projects.forEach(p => { %>
+              <option value="<%= p %>"><%= p %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Число сценариев</label>
+          <input name="count" type="number" value="3" min="1"/>
+        </div>
+        <div class="form-group">
+          <label>Chat ID</label>
+          <input name="chat" type="text" value="400809044"/>
+        </div>
+        <div class="form-group">
+          <label>Тип файла</label>
+          <select name="imgtype">
+            <option>mp4</option>
+            <option>jpg</option>
+            <option>png</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ссылки для postTo (одна в строке)</label>
+          <textarea name="postTo"><%= postToValue %></textarea>
+        </div>
+        <div class="form-group">
+          <label>Ссылки для inPost (одна в строке)</label>
+          <textarea name="inPost"><%= inPostValue %></textarea>
+        </div>
+        <button type="submit" class="btn">Отправить</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
